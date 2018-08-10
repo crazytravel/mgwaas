@@ -1,0 +1,5 @@
+package mgw
+
+func test() {
+
+}
