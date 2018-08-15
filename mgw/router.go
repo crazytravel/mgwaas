@@ -37,43 +37,39 @@ var (
 func InitRouter() {
 	router := mux.NewRouter()
 	router.HandleFunc("/", homeHandler).Methods(httpGet)
-	router.HandleFunc("/start-gateway", startGateway).Methods(httpPost)
-	router.HandleFunc("/stop-gateway", stopGateway).Methods(httpPost)
 	router.HandleFunc("/users", usersHandler).Methods(httpGet)
-	router.HandleFunc("/edge-proxies", edgeProxiesHandler).Methods(httpGet)
+	router.HandleFunc("/start-gateway", startGatewayHandler).Methods(httpPost)
+	router.HandleFunc("/stop-gateway", stopGatewayHandler).Methods(httpPost)
+	router.HandleFunc("/load-template", loadTemplateHandler).Methods(httpGet)
 	http.Handle("/", router)
 	logs := http.ListenAndServe(":8080", router)
 	log.Fatal(logs)
 }
 
-// HomeHandler is a handler for root path
-func homeHandler(writer http.ResponseWriter, request *http.Request) {
-	writer.WriteHeader(http.StatusOK)
-	io.WriteString(writer, "Microgateway As a Service API")
+func loadTemplateHandler(wr http.ResponseWriter, req *http.Request) {
+	wr.WriteHeader(http.StatusOK)
+	ParseTemplate(wr)
 }
 
-func startGateway(writer http.ResponseWriter, request *http.Request) {
-	writer.WriteHeader(http.StatusOK)
-	writer.Header().Set(jhk, jhv)
-	json.NewEncoder(writer).Encode(StatusOK(""))
+func homeHandler(wr http.ResponseWriter, req *http.Request) {
+	wr.WriteHeader(http.StatusOK)
+	io.WriteString(wr, "Microgateway As a Service API")
 }
 
-func stopGateway(writer http.ResponseWriter, request *http.Request) {
-	writer.WriteHeader(http.StatusOK)
-	writer.Header().Set(jhk, jhv)
-	json.NewEncoder(writer).Encode(StatusOK(""))
+func startGatewayHandler(wr http.ResponseWriter, req *http.Request) {
+	wr.WriteHeader(http.StatusOK)
+	wr.Header().Set(jhk, jhv)
+	json.NewEncoder(wr).Encode(StatusOK(""))
 }
 
-// UsersHandler is a user path
-func usersHandler(writer http.ResponseWriter, request *http.Request) {
-	writer.WriteHeader(http.StatusOK)
-	writer.Header().Set(jhk, jhv)
-	json.NewEncoder(writer).Encode(fakeUser)
+func stopGatewayHandler(wr http.ResponseWriter, req *http.Request) {
+	wr.WriteHeader(http.StatusOK)
+	wr.Header().Set(jhk, jhv)
+	json.NewEncoder(wr).Encode(StatusOK(""))
 }
 
-// EdgeProxiesHandler is a proxy path
-func edgeProxiesHandler(writer http.ResponseWriter, request *http.Request) {
-	writer.WriteHeader(http.StatusOK)
-	writer.Header().Set(jhk, jhv)
-	json.NewEncoder(writer).Encode(fakeProxy)
+func usersHandler(wr http.ResponseWriter, req *http.Request) {
+	wr.WriteHeader(http.StatusOK)
+	wr.Header().Set(jhk, jhv)
+	json.NewEncoder(wr).Encode(fakeUser)
 }

@@ -1,5 +1,0 @@
-package mgw
-
-func test() {
-
-}
