@@ -1,8 +1,6 @@
 package main
 
-import (
-	"github.com/crazytravel/mgwaas/mgw"
-)
+import "github.com/crazytravel/mgwaas/api"
 
 func init() {
 	// fmt.Println("...init...")
@@ -19,5 +17,5 @@ func init() {
 
 func main() {
 	// mgw.ParseTemplate()
-	mgw.InitRouter()
+	api.InitRouter()
 }

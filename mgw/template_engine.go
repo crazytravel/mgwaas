@@ -6,6 +6,8 @@ import (
 	"log"
 	"path/filepath"
 	"text/template"
+
+	"github.com/crazytravel/mgwaas/utils"
 )
 
 func loadTemplate() string {
@@ -34,8 +36,8 @@ func ParseTemplate(wr io.Writer) {
 	tmpl.Execute(wr, mgwCxt)
 }
 
-func createMockData() *MicroGatewayTemplate {
-	return &MicroGatewayTemplate{
+func createMockData() *MicroGatewayContext {
+	return &MicroGatewayContext{
 		EdgeConfig: &EdgeConfig{
 			Bootstrap:        "https://edgemicroservices.apigee.net/edgemicro/bootstrap/organization/wangshuo866-eval/environment/test",
 			JwtPublicKey:     "https://wangshuo866-eval-test.apigee.net/edgemicro-auth/publicKey",
@@ -52,7 +54,7 @@ func createMockData() *MicroGatewayTemplate {
 			MaxConnections:           1000,
 			ConfigChangePollInterval: 600,
 			Logging: &Logging{
-				Level:            "error",
+				Level:            utils.ErrorLevel,
 				Dir:              "/var/tmp",
 				StatsLogInterval: 60,
 				RotateInterval:   24,
