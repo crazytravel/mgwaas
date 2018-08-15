@@ -29,6 +29,7 @@ type EdgeConfig struct {
 	Products         string `json:"products"`
 }
 
+// EdgeMicro struct is part of template config properties
 type EdgeMicro struct {
 	Port                      uint     `json:"port"`
 	MaxConnections            uint     `json:"maxConnections"`
@@ -38,6 +39,7 @@ type EdgeMicro struct {
 	Plugins                   *Plugins `json:"Plugins"`
 }
 
+// Headers struct is part of template config properties
 type Headers struct {
 	XForwardedFor  bool `json:"xForwardedFor"`
 	XForwardedHost bool `json:"xForwardedHost"`
@@ -46,6 +48,7 @@ type Headers struct {
 	Via            bool `json:"via"`
 }
 
+// OAuth struct is part of template config properties
 type OAuth struct {
 	AllowNoAuthorization      bool   `json:"allowNoAuthorization"`
 	AllowInvalidAuthorization bool   `json:"allowInvalidAuthorization"`
@@ -55,6 +58,7 @@ type OAuth struct {
 	VerifyAPIKeyURL           string `json:"verifyAPIKeyURL"`
 }
 
+// Analytics struct is part of template config properties
 type Analytics struct {
 	URI           string `json:"uri"`
 	BufferSize    uint   `json:"bufferSize"`
@@ -62,6 +66,7 @@ type Analytics struct {
 	FlushInterval uint   `json:"flushInterval"`
 }
 
+// Logging struct is part of template config properties
 type Logging struct {
 	Level            string `json:"level"`
 	Dir              string `json:"dir"`
@@ -69,11 +74,13 @@ type Logging struct {
 	RotateInterval   uint   `json:"rotateInterval"`
 }
 
+// Plugins struct is part of template config properties
 type Plugins struct {
 	Dir      string   `json:"dir"`
 	Sequence []string `json:"sequence"`
 }
 
+// Debug struct is part of template config properties
 type Debug struct {
 	Port uint   `json:"port"`
 	Args string `json:"args"`
